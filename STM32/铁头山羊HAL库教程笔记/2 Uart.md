@@ -13,7 +13,7 @@
   ![alt text](<assets/2 Uart/image-3.png>)
 
 ## 第12课 [UART]简单数据发送实验
-### 一、HAL库函数
+### HAL库函数
 1. 串口发送函数
 ```c
 HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout) 
@@ -26,8 +26,8 @@ HAL_UART_Transmit(&huart1, &a, 1, HAL_MAX_DELAY);
 其中：huart1是串口1的句柄，配置好后系统自动生成的。a是变量，&a是变量的地址;1是发送1位数据，HAL_MAX_DELAY是一直等待发送完毕。
 2. 数据类型
    ![alt text](<assets/2 Uart/image-5.png>)
-### 二、简单数据发送实验
-#### STM32逐个向电脑串口发送数字，数组，字符，字符串。
+### 简单数据发送实验
+#### 控制要求：STM32逐个向电脑串口发送数字，数组，字符，字符串。串口参数设置为115200，8N1。
 1. MX设置：
    1. Connectivity中，Usart1设置为Asynchronous模式。
    2. Usart1的Parameter Settings设置为：115200，8，None，1。
@@ -71,7 +71,7 @@ hal_uart_receive(&uart1,buffer,sizeof(buffer),1000);
 
 ```
 ### 二、简单数据接收实验
-#### 串口接收到0就灭灯，接收到1就亮灯。
+#### 控制要求：STM32的串口接收到0就灭灯，接收到1就亮灯。灯连接到PC13，开漏接法。串口参数115200，8N1。
 1. MX串口设置。
       1. Connectivity中，Usart1设置为Asynchronous模式。
       2. Usart1的Parameter Settings设置为：115200，8，None，1。
@@ -84,10 +84,10 @@ hal_uart_receive(&uart1,buffer,sizeof(buffer),1000);
    ```c
    while(1){
       uint8_t dataRcvd;
-      HAL_UART_Receive(&huart1, &dataRcvd, 1, HAL MAX DELAY);
+      HAL_UART_Receive(&huart1, &dataRcvd, 1, HAL_MAX_DELAY);
       if(dataRcvd=='0’)//接收到'0’ 就灭灯
-         {HAL GPIO WritePin(GPIOC, GPIO PIN 13, GPIO PIN SET);}
+         {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);}
       elseif(dataRcvd=='1’)//接收到'1’就亮灯
-         {HAL_ GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);}
+         {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);}
    }
    ```
