@@ -78,7 +78,9 @@ while(1){
 1. 读取引脚高低电平函数HAL_GPIO_ReadPin
 ```c
 GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)//返回两种状态：GPIO_PIN_SET和GPIO_PIN_RESET
+```
 举例：
+```c
 HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)
 ```
 ### 二、按钮实验
